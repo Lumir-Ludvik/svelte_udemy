@@ -33,5 +33,7 @@
 <h1>Hello {uppercaseName}!, my age is {age}</h1> <!-- podobně jak react jen nemusím označit přes this.state.name-->
 <button on:click="{incrementAge}">Change Age</button>
 <!-- <button on:click="{changeName}">Change name</button> -->
-<input type="text" value="{name}" on:input="{nameInput}" /> <!--když nastavím pouze value jedná se o oneWay databinding podbně jak Angular-->
+<!-- <input type="text" value="{name}" on:input="{nameInput}" /> když nastavím pouze value jedná se o oneWay databinding podbně jak Angular -->
 <!--on:input zajistí twoWay databinding skrze klasicky event-->
+<input type="text" bind:value="{name}" />
+<!--to samé jako předchozí příklad avšak nepotřebuji vytvářen novou metudo a starat se o event. Svelte vše pořeší sám -->
