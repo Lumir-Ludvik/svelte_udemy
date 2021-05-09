@@ -17,6 +17,11 @@
 	}
 
 	const changeName = () => name = "Maximilian"; // změním proměnnou name čímž spustím "přepočet" všech dynamických proměnných které používají name
+
+	const nameInput = (event) => {
+		const enteredValue = event.target.value;
+		name = enteredValue;
+	}
 </script>
 
 <style>
@@ -27,4 +32,6 @@
 
 <h1>Hello {uppercaseName}!, my age is {age}</h1> <!-- podobně jak react jen nemusím označit přes this.state.name-->
 <button on:click="{incrementAge}">Change Age</button>
-<button on:click="{changeName}">Change name</button>
+<!-- <button on:click="{changeName}">Change name</button> -->
+<input type="text" value="{name}" on:input="{nameInput}" /> <!--když nastavím pouze value jedná se o oneWay databinding podbně jak Angular-->
+<!--on:input zajistí twoWay databinding skrze klasicky event-->
