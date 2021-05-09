@@ -1,4 +1,6 @@
 <script>
+	import ContactCard from './ContactCard.svelte';
+
 	let name ='max';
 	let age = 30;
 
@@ -37,3 +39,4 @@
 <!--on:input zajistí twoWay databinding skrze klasicky event-->
 <input type="text" bind:value="{name}" />
 <!--to samé jako předchozí příklad avšak nepotřebuji vytvářen novou metudo a starat se o event. Svelte vše pořeší sám -->
+<ContactCard userName="{name}" /> <!--další komponenta-->
