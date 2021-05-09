@@ -1,6 +1,9 @@
 <script>
     export let userName; //proměnná co se použije z parenta vlastně je to props z reactu
     //bez klíčového slova export se jedná o lokální proměnnou 
+    export let jobTitle;
+    export let description;
+    export let imageUrl;
 </script>
 
 <style>
@@ -23,6 +26,10 @@
     height: 100%;
   }
 
+  .thumb-placeholder {
+    
+  }
+
   img {
     width: 100%;
     height: 100%;
@@ -34,6 +41,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 1rem;
   }
 
   h1 {
@@ -58,15 +66,15 @@
 
 <div class="contact-card">
   <header>
-    <div class="thumb">
-      <img src="" alt="" />
+    <div class="thumb" class:thumb-placeholder="{!imageUrl}"> <!--předej thumb-placeholder CSS třídu pokud není imageUrl proměnná jinak používej thumb-->
+      <img src="{imageUrl}" alt="none" />
     </div>
     <div class="user-data">
       <h1>{userName}</h1>
-      <h2>Job Title</h2>
+      <h2>{jobTitle}</h2>
     </div>
   </header>
   <div class="description">
-    <p>A short description</p>
+    <p>{@html description}</p> <!--pokud chci aby se vše interpretovalo jako HTML. Svelte neumí sanitization na html kód-->
   </div>
 </div>
