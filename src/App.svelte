@@ -5,6 +5,21 @@
   let title = "";
   let image = "";
   let description = "";
+  let formState = "empty";
+
+  const addContact = () => {
+    if (
+      name.trim().length === 0 
+      || title.trim().length === 0 
+      || description.trim() === 0 
+      || image.trim().length === 0
+    ) {
+      formState = "invalid";
+      return;
+    }
+
+    formState = "done";
+  }
 </script>
 
 <style>
@@ -33,4 +48,11 @@
   </div>
 </div>
 
-<ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+<button on:click="{addContact}">Add Contact Card</button>
+{#if formState === "done"}
+  <ContactCard userName={name} jobTitle={title} {description} userImage={image} />
+{:else if formState === "invalid"} 
+  <p>invalid input</p>
+{:else}
+  <p>enter some data</p>
+{/if}
