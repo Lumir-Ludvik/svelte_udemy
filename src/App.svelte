@@ -6,28 +6,40 @@
   let image = "";
   let description = "";
   let formState = "empty";
+  let createdContacts = [];
 
   const addContact = () => {
     if (
-      name.trim().length === 0 
-      || title.trim().length === 0 
-      || description.trim() === 0 
-      || image.trim().length === 0
+      name.trim().length === 0 ||
+      title.trim().length === 0 ||
+      description.trim() === 0 ||
+      image.trim().length === 0
     ) {
       formState = "invalid";
       return;
     }
 
-    formState = "done";
-  }
-</script>
+    createdContacts.push({
+      //svelte nepozná změnu musíme přepsat pole!
+      name,
+      title,
+      description,
+      image,
+    });
 
-<style>
-  #form {
-    width: 30rem;
-    max-width: 100%;
-  }
-</style>
+    createdContacts = [ // svelte pozná změnu bo přepisujeme
+      ...createdContacts,
+      {
+        name,
+        title,
+        description,
+        image,
+      },
+    ];
+
+    formState = "done";
+  };
+</script>
 
 <div id="form">
   <div class="form-control">
@@ -48,11 +60,25 @@
   </div>
 </div>
 
-<button on:click="{addContact}">Add Contact Card</button>
-{#if formState === "done"}
-  <ContactCard userName={name} jobTitle={title} {description} userImage={image} />
-{:else if formState === "invalid"} 
+<button on:click={addContact}>Add Contact Card</button>
+{#if formState === "invalid"}
   <p>invalid input</p>
 {:else}
   <p>enter some data</p>
 {/if}
+
+{#each createdContacts as contact}
+  <ContactCard
+    userName={contact.name}
+    jobTitle={contact.title}
+    description={contact.description}
+    userImage={contact.image}
+  />
+{/each}
+
+<style>
+  #form {
+    width: 30rem;
+    max-width: 100%;
+  }
+</style>
