@@ -68,6 +68,9 @@
     <textarea rows="3" bind:value={description} id="desc" />
   </div>
   <button on:click|preventDefault={addContact}>Add Contact Card</button> <!--once pouze jednou zavolá event dále umí capture, passive, stopPropagation nebo preventDefault viz info: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture-->
+  <!--passive:  může vylepšit výkon při scrolování
+      capture: zavolá event když je prohlížeč ve fázi capturing (hledá všechny on click eventy od tagu <html> až po poslední child)
+      -->
 </form>
 
 <button on:click={deleteFirst}>Delete first</button>
