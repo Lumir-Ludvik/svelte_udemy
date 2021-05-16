@@ -79,7 +79,7 @@
   <p>enter some data</p>
 {/if}
 
-{#each createdContacts as contact, index (contact.id)} <!--přidá ID pro ContactCard a předejde chybě při mazání-->
+{#each createdContacts as contact, index (contact.id)} <!--přidá ID pro ContactCard a předejde chybě při mazání. ID zrychlí výkon Svelte protože Svelte nemusí překreslit DOM-->
 <h2># {index + 1}</h2>
   <ContactCard
     userName={contact.name}
