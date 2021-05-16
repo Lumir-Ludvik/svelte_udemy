@@ -67,13 +67,16 @@
   <p>enter some data</p>
 {/if}
 
-{#each createdContacts as contact}
+{#each createdContacts as contact, index}
+<h2># {index + 1}</h2>
   <ContactCard
     userName={contact.name}
     jobTitle={contact.title}
     description={contact.description}
     userImage={contact.image}
   />
+{:else} <!-- co se stane když je pole prázdné-->
+  <p>Please start adding some contacts, non were found!</p>
 {/each}
 
 <style>
