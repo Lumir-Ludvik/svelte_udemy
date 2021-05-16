@@ -50,7 +50,7 @@
   }
 </script>
 
-<div id="form">
+<form id="form">
   <div class="form-control">
     <label for="userName">User Name</label>
     <input type="text" bind:value={name} id="userName" />
@@ -67,9 +67,9 @@
     <label for="desc">Description</label>
     <textarea rows="3" bind:value={description} id="desc" />
   </div>
-</div>
+  <button on:click|preventDefault={addContact}>Add Contact Card</button> <!--once pouze jednou zavolá event dále umí capture, passive, stopPropagation nebo preventDefault viz info: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture-->
+</form>
 
-<button on:click={addContact}>Add Contact Card</button>
 <button on:click={deleteFirst}>Delete first</button>
 <button on:click={deleteLast}>Delete last</button>
 
@@ -95,5 +95,6 @@
   #form {
     width: 30rem;
     max-width: 100%;
+    margin: 1rem;
   }
 </style>
