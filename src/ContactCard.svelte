@@ -3,6 +3,8 @@
   export let jobTitle;
   export let description;
   export let userImage;
+
+  const initialName = userName;
 </script>
 
 <style>
@@ -70,7 +72,9 @@
       <img src={userImage} alt={userName} />
     </div>
     <div class="user-data">
-      <h1>{userName}</h1>
+      <h1>{userName} / {initialName}</h1> <!--initial name bude robit problémy. Nebude se updatovat po smazání prvního. Svelte je nerozerná bo nemaní unikátní id-->
+      <!--Svelte nativně smaže poslední z pole a pak přepíše proměnné ostatních zbylích contact cards. I když smažu první z pole svelt odebere poslední a přepíše proměnné zbylích posunuté o jednu v poli-->
+      <!--musíme přidat id-->
       <h2>{jobTitle}</h2>
     </div>
   </header>

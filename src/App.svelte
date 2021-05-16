@@ -30,6 +30,7 @@
     createdContacts = [ // svelte pozná změnu bo přepisujeme
       ...createdContacts,
       {
+        id: Math.random(), //"unikátní" id musí být číslo nebo string
         name,
         title,
         description,
@@ -39,6 +40,14 @@
 
     formState = "done";
   };
+
+  const deleteFirst = () => {
+    createdContacts = createdContacts.slice(1);
+  }
+
+  const deleteLast = () => {
+    createdContacts = createdContacts.slice(0, -1);
+  }
 </script>
 
 <div id="form">
@@ -61,13 +70,16 @@
 </div>
 
 <button on:click={addContact}>Add Contact Card</button>
+<button on:click={deleteFirst}>Delete first</button>
+<button on:click={deleteLast}>Delete last</button>
+
 {#if formState === "invalid"}
   <p>invalid input</p>
 {:else}
   <p>enter some data</p>
 {/if}
 
-{#each createdContacts as contact, index}
+{#each createdContacts as contact, index (contact.id)} <!--přidá ID pro ContactCard a předejde chybě při mazání-->
 <h2># {index + 1}</h2>
   <ContactCard
     userName={contact.name}
